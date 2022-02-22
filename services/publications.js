@@ -20,8 +20,20 @@ async function getPublById(id) {
 }
 
 
+async function sharePubl(publId, userId) {
+    const publ = await Publication.findById(publId);
+
+    if (publ.shared.includes(userId)) {
+        throw new Error('User is already shared this publication!');
+    }
+
+    publ.shared.push(userId);
+    await publ.save();
+}
+
 module.exports = {
     createPublication,
     getAll,
     getPublById,
+    sharePubl
 };

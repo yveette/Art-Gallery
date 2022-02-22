@@ -25,6 +25,19 @@ router.get('/catalog/:id', preload(), (req, res) => {
 
     res.render('details', { title: 'Details Page', data: publication });
 });
+
+
+router.get('/share/:id', isUser(), async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        await sharePubl(id, req.session.user._id);
+    } catch (err) {
+        console.error(err);
+    } finally {
+        res.redirect('/catalog/' + id);
+    }
+
 });
 
 module.exports = router;
