@@ -4,8 +4,12 @@ const { getAll, sharePubl } = require('../services/publications');
 
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
-    res.render('home', { title: 'Home Page' });
+router.get('/', async (req, res) => {
+    const publications = await getAll();
+    publications.map(p => p.count = p.shared.length);
+    res.render('home', { title: 'Home Page', publications});
+});
+
 router.get('/catalog', async (req, res) => {
     const publications = await getAll();
     res.render('catalog', { title: 'Gallery Page', publications });
