@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 // TODO load here all created models...
 require('../models/User');
 
-// TODO change database name
-const dbName = 'wildlife';
+const dbName = 'gallery';
 const connnectionString = `mongodb://localhost:27017/${dbName}`;
 
 module.exports = async (app) => {
