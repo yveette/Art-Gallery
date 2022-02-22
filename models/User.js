@@ -1,6 +1,5 @@
 const { Schema, model, Types: { ObjectId } } = require('mongoose');
 
-// TODO change user model
 // TODO add validation
 
 // const URL_PATTERN = /^https?:\/\/(.+)/;
@@ -9,7 +8,9 @@ const { Schema, model, Types: { ObjectId } } = require('mongoose');
 
 const userSchema = new Schema({
     username: { type: String, required: true },
-    hashedPassword: { type: String, required: true }
+    hashedPassword: { type: String, required: true },
+    address: { type: String, required: true },
+    publications: {type: [ObjectId], ref: 'Publication', default: [] }
 });
 
 userSchema.index({ username: 1 }, {
