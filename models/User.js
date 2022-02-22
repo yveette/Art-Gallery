@@ -7,10 +7,10 @@ const { Schema, model, Types: { ObjectId } } = require('mongoose');
 // const EMAIL_PATTERN = /^([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z]+)$/;
 
 const userSchema = new Schema({
-    username: { type: String, required: true },
+    username: { type: String, minlength: [3, 'Username should be at least 4 characters long!'] },
     hashedPassword: { type: String, required: true },
-    address: { type: String, required: true },
-    publications: {type: [ObjectId], ref: 'Publication', default: [] }
+    address: { type: String, maxlength: [20, 'Address should be a maximum of 20 characters long!'] },
+    publications: { type: [ObjectId], ref: 'Publication', default: [] }
 });
 
 userSchema.index({ username: 1 }, {

@@ -1,8 +1,7 @@
 {{#with data}}
 <section id="edit-container">
     <div class="edit-container-info">
-        <!-- Do not forget to change the path to the image -->
-        <img src="/static/img/{{picture}}" alt="image">
+        <img src="{{picture}}" alt="image">
 
         <form action="/edit/{{_id}}" method="POST" class="container-text">
             <h2>Edit</h2>
