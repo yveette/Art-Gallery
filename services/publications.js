@@ -46,11 +46,24 @@ async function deleteById(id) {
     await Publication.findByIdAndDelete(id);
 }
 
+async function getUsersPubl(userId) {
+    const publ = await Publication.find({ owner: userId });
+
+    return (publ.map(p => p.title)).join(', ');
+}
+
+async function findUsersShared(userId) {
+    const shared = await Publication.find({ shared: { _id: userId } });
+    return (shared.map(s => s.title)).join(', ');
+}
+
 module.exports = {
     createPublication,
     getAll,
     getPublById,
     sharePubl,
     updatePubl,
-    deleteById
+    deleteById,
+    getUsersPubl,
+    findUsersShared
 };

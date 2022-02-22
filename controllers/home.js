@@ -1,13 +1,13 @@
 const { isUser } = require('../middleware/guards');
 const preload = require('../middleware/preload');
-const { getAll, sharePubl } = require('../services/publications');
+const { getAll, sharePubl, getUsersPubl, findUsersShared } = require('../services/publications');
 
 const router = require('express').Router();
 
 router.get('/', async (req, res) => {
     const publications = await getAll();
     publications.map(p => p.count = p.shared.length);
-    res.render('home', { title: 'Home Page', publications});
+    res.render('home', { title: 'Home Page', publications });
 });
 
 router.get('/catalog', async (req, res) => {
@@ -42,6 +42,16 @@ router.get('/share/:id', isUser(), async (req, res) => {
         res.redirect('/catalog/' + id);
     }
 
+});
+
+router.get('/profile', isUser(), async (req, res) => {
+    const userPubls = await getUsersPubl(res.locals.user._id);
+    res.locals.user.userPubls = userPubls;
+
+    const userShared = await findUsersShared(res.locals.user._id);
+    res.locals.user.userShared = userShared;
+
+    res.render('profile', { title: 'Profile Page' });
 });
 
 module.exports = router;
