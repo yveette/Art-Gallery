@@ -31,9 +31,26 @@ async function sharePubl(publId, userId) {
     await publ.save();
 }
 
+async function updatePubl(id, publ) {
+    const existing = await Publication.findById(id);
+
+    existing.title = publ.title;
+    existing.technique = publ.technique;
+    existing.picture = publ.picture;
+    existing.certificate = publ.certificate;
+
+    await existing.save();
+}
+
+async function deleteById(id) {
+    await Publication.findByIdAndDelete(id);
+}
+
 module.exports = {
     createPublication,
     getAll,
     getPublById,
-    sharePubl
+    sharePubl,
+    updatePubl,
+    deleteById
 };
