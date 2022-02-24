@@ -53,9 +53,10 @@
 - Password - string (required),
 - Address - string (required),
 - My Publications - a collection of  Publication (a reference to the Publication Model)
+
 *Note: When a user creates a new publication, a reference to that publication is added to that collection (My Publications).*
 
-### Hotel:
+### Publication:
 
 - Title - string (required),
 - Painting technique - string (required),
@@ -63,6 +64,7 @@
 - Certificate of authenticity - string ("Yes", "No") required,
 - Author - object Id (a reference to the User model),
 - Users Shared - a collection of Users (a reference to the User model)
+
 *Note: When a user shares a given publication, their id is added to that collection (Users Shared).*
 
 ## Application Pages
@@ -102,11 +104,13 @@ List of all **art publications**. Each publication should display information ab
 
 [Details] button should be a link to the details page for the current publication.
 If there are no art publications in the database, display : 
+
 "No publications created yet! [Create publication]"
 
 ### Details Page - (for logged in users and logged out users)
 
 All users should be able to view details about the publication. Clicking the Details button in a publication card should display the Details page. If the currently logged-in user is the author of the publication, the Edit and Delete buttons should be displayed, otherwise they should not be available.
+
 Information about the publication:
 - Title
 - Author
@@ -147,8 +151,11 @@ If the currently logged-in user is not the author and has already shared a curre
 ### Share publication (logged in user who is not the author of the publication)
 
 Any registered user who is not the author of the art publication must be able to **share** it (if he has not already shared it). 
+
 If it is successfully shared, the userId of the user must be **added to the collection of Users Shared**.
+
 Then redirect the user to **ArtGallery** (home page), where they should see the updated value of a **number** of people shared the publication for the current publication, and it will be **incremented by one**. *(See the reflected changes for the publication in the section "Shared Post Statistics").*
+
 If a user has shared a current publication, he should see the paragraph *"You already shared this publication"*.
 
 ### Create Publication Page (logged in user)
@@ -170,15 +177,19 @@ The Edit page is available to logged-in users and it allows authors to edit thei
 ### Profile Page - Bonus
 
 Each logged-in user should be able to view their full profile information by clicking [Profile]. Username, address, titles of shared posts by the user (which the current user has shared), and the titles of which the user is the author with current user data must be completed.
+
 If there are shared or own publications from the current user, separate their titles with a comma and a space (, ).
+
 Otherwise, if there are no shared or own publications yet, the message *"Not yet."* should be visualized.
 
 ![Profile Page View](https://github.com/yveette/Art-Gallery/blob/main/readme_files/profile_page.png)
 
-### Profile Page - Bonus
+### 404 Page Not Found
 
 If Guests (not logged in) trying to access а page that it should not be able to, you must redirect them to the Login page.
+
 If Users (logged in) trying to access а page that it should not be able to, you must redirect them to the ArtGallery.
+
 Use the following view for invalid paths:
 
 ![404 Page View](https://github.com/yveette/Art-Gallery/blob/main/readme_files/not_found_page.png)
@@ -187,6 +198,7 @@ Use the following view for invalid paths:
 
 The application should **notify** the users about the result of their actions.
 In case of **error**, you should display div with class "**error-box**".
+
 You can choose to display the first error or all of them. You have complete freedom to choose the content of the error message you will display.
 
 ### Login / Register
@@ -209,8 +221,8 @@ The Security Requirements are mainly access requirements. Configurations about w
 - users can access the **ArtGallery** (home page).
 - users can access the **Login** page and functionality.
 - users can access the **Register** page and functionality.
-- can access Gallery (listed all publications).
-- can access the Details page without functionality.
+- can access **Gallery** (listed all publications).
+- can access the **Details** page without functionality.
 
 ### Users (logged in):
 - can access **Home** page page and functionality.
